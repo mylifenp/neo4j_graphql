@@ -18,3 +18,4 @@ src/log/
 mongodb/
 .docker/
 dist/
+db/
