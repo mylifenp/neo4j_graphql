@@ -1,13 +1,15 @@
-import "dotenv/config";
 import { ApolloServer } from "apollo-server";
-import { PORT } from "./config";
-import schema from "./schema";
+import gqlschema from "./schema";
 
-const neoSchema = schema;
+// export async function Server(context: any) {
+//   const schema = await gqlschema.getSchema();
+//   return new ApolloServer({ schema, context });
+// }
 
-neoSchema.getSchema().then((schema) => {
-  const server = new ApolloServer({ schema });
-  server.listen(PORT).then(({ url }) => {
-    console.log(`GraphQL server ready at ${url}`);
-  });
-});
+const Server = async (context: any) => {
+  const schema = await gqlschema.getSchema();
+  const server = new ApolloServer({ schema, context });
+  return server;
+};
+
+export { Server };
